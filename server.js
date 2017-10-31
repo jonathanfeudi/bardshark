@@ -6,7 +6,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-//const db = require('./db/pgp');
+const db = require('./db/pgp');
 const dotenv = require('dotenv');
 
 const app = express();
@@ -35,5 +35,5 @@ app.get('/', function(req,res){
 });
 
 app.listen(port,()=>
-  console.log('Server online - Shark available for Tasting on ',port,'//', new Date())
+  console.log('Server online - Taste the Shark on port',port,'//', new Date())
 );
