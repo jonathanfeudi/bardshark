@@ -34,6 +34,8 @@ app.get('/', function(req,res){
   res.render('pages/home')
 });
 
+app.use( '/users', userRoutes);
+
 app.listen(port,()=>
   console.log('Server online - Taste the Shark on port',port,'//', new Date())
 );
