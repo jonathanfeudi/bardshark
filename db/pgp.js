@@ -23,7 +23,7 @@ function createSecure (email, password, username, callback) {
 };
 
 function createUser(req, res, next){
-  createuSecure(req.body.email, req.body.password, req.body.username, saveUser);
+  createSecure(req.body.email, req.body.password, req.body.username, saveUser);
 
   function saveUser(email, hash, username) {
     db.none("INSERT INTO users (email, password_digest, username) VALUES ($1, $2, $3);",
@@ -37,6 +37,19 @@ function createUser(req, res, next){
         console.log('error signing up')
       })
   }
+};
+
+function createSubscriber(req, res, next){
+  db.none("INSERT INTO mailingList (name, email) VALUES ($1, $2);",
+    [req.body.name, req.body.email])
+    .then((data) => {
+      console.log(data)
+      next()
+    })
+    .catch(() => {
+      console.log(cn)
+      console.log('error signing up')
+    })
 };
 
 function loginUser(req, res, next) {
@@ -61,3 +74,4 @@ function loginUser(req, res, next) {
 
 module.exports.createUser = createUser;
 module.exports.loginUser = loginUser;
+module.exports.createSubscriber = createSubscriber;

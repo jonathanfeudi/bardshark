@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const db = require('./db/pgp');
 const dotenv = require('dotenv');
+const userRoutes = require(path.join(__dirname, 'routes/users'));
 
 const app = express();
 const port = process.env.PORT || 3000;
