@@ -9,12 +9,26 @@ const methodOverride = require('method-override');
 const db = require('./db/pgp');
 const dotenv = require('dotenv');
 const userRoutes = require(path.join(__dirname, 'routes/users'));
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
+const pgp = require('pg-promise')({});
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 //load .env
 dotenv.load();
+
+//initialize session and connect-pg-simple for login stuff
+app.use(session({
+  store: new pgSession({
+    pgPromise: pgp,
+    tableName: 'session'
+  }),
+  secret: 'shhhhh',
+  resave: false,
+  cookie: {maxAge: 30 * 24 * 60 * 60 *100}
+}));
 
 //create static route to public folder
 app.use(express.static(path.join(__dirname, 'public')));
