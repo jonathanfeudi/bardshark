@@ -19,10 +19,18 @@ const port = process.env.PORT || 3000;
 //load .env
 dotenv.load();
 
+var cn = {
+  host: process.env.DB_HOST,
+  port: 5432,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS
+};
+
 //initialize session and connect-pg-simple for login stuff
 app.use(session({
   store: new pgSession({
-    pgPromise: pgp,
+    pgPromise: pgp(cn),
     tableName: 'session'
   }),
   secret: 'shhhhh',
