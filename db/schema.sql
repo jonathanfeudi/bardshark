@@ -5,6 +5,7 @@ DROP TABLE if exists session;
 CREATE TABLE users (
        userid SERIAL UNIQUE PRIMARY KEY,
        email VARCHAR(255),
+       username TEXT,
        password_digest TEXT
 );
 

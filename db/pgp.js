@@ -33,7 +33,7 @@ function createUser(req, res, next){
         next()
       })
       .catch(() => {
-        console.log(cn)
+        //console.log(cn)
         console.log('error signing up')
       })
   }
@@ -47,7 +47,7 @@ function createSubscriber(req, res, next){
       next()
     })
     .catch(() => {
-      console.log(cn)
+      //console.log(cn)
       console.log('error signing up')
     })
 };
