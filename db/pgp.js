@@ -1,8 +1,8 @@
 const pgp = require('pg-promise')({});
 const dotenv = require('dotenv');
 dotenv.load();
-const bcrypt = require('bcrypt');
-const salt = bcrypt.genSaltSync(10);
+//const bcrypt = require('bcrypt');
+//const salt = bcrypt.genSaltSync(10);
 
 if(process.env.ENVIRONMENT === 'production') {
   var cn = process.env.DATABASE_URL
@@ -20,6 +20,7 @@ if(process.env.ENVIRONMENT === 'production') {
 
 var db = pgp(cn);
 
+/*
 function createSecure (email, password, username, callback) {
   bcrypt.genSalt(function (err, salt) {
     bcrypt.hash(password, salt, function (err, hash) {
@@ -27,7 +28,8 @@ function createSecure (email, password, username, callback) {
     });
   });
 };
-
+*/
+/*
 function createUser(req, res, next){
   createSecure(req.body.email, req.body.password, req.body.username, saveUser);
 
@@ -44,6 +46,7 @@ function createUser(req, res, next){
       })
   }
 };
+*/
 
 function createSubscriber(req, res, next){
   db.none("INSERT INTO mailingList (name, email) VALUES ($1, $2);",
@@ -58,6 +61,7 @@ function createSubscriber(req, res, next){
     })
 };
 
+/*
 function loginUser(req, res, next) {
   var email = req.body.email
   var password = req.body.password
@@ -77,7 +81,8 @@ function loginUser(req, res, next) {
       console.error('error finding users')
     })
 };
+*/
 
-module.exports.createUser = createUser;
-module.exports.loginUser = loginUser;
+//module.exports.createUser = createUser;
+//module.exports.loginUser = loginUser;
 module.exports.createSubscriber = createSubscriber;
