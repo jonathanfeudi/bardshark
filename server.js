@@ -55,7 +55,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.get('/', function(req,res){
-  res.render('./pages/home')
+  res.render('pages/home')
 });
 
 app.use( '/users', userRoutes);
