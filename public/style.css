@@ -1,0 +1,44 @@
+.slogan {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.logo {
+  margin-top: 10px;
+  max-width: 700px;
+  max-height: 300px;
+}
+
+.navbar {
+  background-color: black;
+  margin-bottom: 10px;
+}
+
+.bodyText {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+#subForm {
+  margin-top: 20px;
+}
+
+#blurb {
+  margin-top: 20px;
+}
+
+#logotype {
+  /*
+  margin-bottom: 4%;
+  */
+  vertical-align: top;
+  margin-top: 1%;
+}
+
+#littleShark {
+  margin-left: 1%;
+  margin-top: 1px;
+}

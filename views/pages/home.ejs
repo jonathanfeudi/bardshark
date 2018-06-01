@@ -1,47 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-
+    <link rel="stylesheet" type="text/css" href="skeleton.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta charset="utf-8">
+    <title>BardShark</title>
   </head>
   <body>
-    <div>
-      Taste the Shark.
-    </div>
-    <div>
-      <div>
-        <label>Subscribe!</label>
-        <form action="/users" method="post">
-          <label for="email">Email address</label>
-          <input type="text" name="email">
+    <div class="container">
+      <div class="row">
+        <div class="bodyText">Coming soon...
+        </div>
       </div>
-      <div>
-          <label for="name">Name</label>
-          <input type="text" name="name">
+      <div class="row">
+        <div class="slogan">
+          <img class="logo" src="antematterLogo.png">
+        </div>
       </div>
-      <div>
-          <input type="submit" value="Register">
+      <div id="blurb" class="row bodyText">
+        Enter your information and we'll notify you when cool Antematter stuff is happening!
       </div>
-        </form>
-    </div>
-    <div>
-      <div>
-        <label>Register!</label>
-        <form action="/users/admin" method="post">
-          <label for="email">Email address</label>
-          <input type="text" name="email">
+      <div id="subForm" class="row bodyText">
+        <div>
+          <form action="/users" method="post">
+            <label for="name">Name</label>
+            <input type="text" name="name">
+            <label for="email">Email address</label>
+            <input type="text" name="email">
+        </div>
+        <div>
+            <input type="submit" value="Register">
+        </div>
+          </form>
       </div>
-      <div>
-          <label for="username">Username</label>
-          <input type="text" name="username">
-      </div>
-      <div>
-          <label for="password">Password</label>
-          <input type="text" name="password">
-      </div>
-      <div>
-          <input type="submit" value="Register">
-      </div>
-        </form>
     </div>
   </body>
 </html>
