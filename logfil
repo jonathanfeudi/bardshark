@@ -1,0 +1,16 @@
+2017-11-02 17:25:55.909 EDT [5729] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2017-11-02 17:25:55.909 EDT [5729] LOG:  listening on IPv6 address "::1", port 5432
+2017-11-02 17:25:55.910 EDT [5729] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2017-11-02 17:25:55.925 EDT [5730] LOG:  database system was shut down at 2017-11-02 17:10:18 EDT
+2017-11-02 17:25:55.929 EDT [5729] LOG:  database system is ready to accept connections
+2017-11-02 17:26:10.272 EDT [5750] FATAL:  database "Feudimonster" does not exist
+2017-11-02 17:26:19.222 EDT [5755] FATAL:  database "help" does not exist
+2017-11-02 20:00:24.086 EDT [6090] FATAL:  database "Feudimonster" does not exist
+2017-11-02 20:00:30.680 EDT [6099] FATAL:  database "help" does not exist
+2017-11-02 20:00:35.092 EDT [6108] FATAL:  database "bardshark" does not exist
+2017-11-02 20:27:00.154 EDT [7618] FATAL:  database "Feudimonster" does not exist
+2017-11-02 20:37:08.429 EDT [5729] LOG:  received fast shutdown request
+2017-11-02 20:37:08.431 EDT [5729] LOG:  aborting any active transactions
+2017-11-02 20:37:08.433 EDT [5729] LOG:  worker process: logical replication launcher (PID 5736) exited with exit code 1
+2017-11-02 20:37:08.434 EDT [5731] LOG:  shutting down
+2017-11-02 20:37:08.439 EDT [5729] LOG:  database system is shut down
