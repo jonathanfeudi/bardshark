@@ -9,6 +9,29 @@ users.post('/', db.createSubscriber, function(req, res){
   res.redirect('/');
 });
 
+users.use(function (error, request, response, next) {
+  if (error.name === 'UnauthorizedError') {
+    response.status(401).json({message: 'You need an authorization token to view confidential information.'});
+  }
+});
+
+users.get('/', (req, res) => {
+  res.json({data: 'success'});
+});
+
+users.post('/', db.createUser, (req,res) => {
+  console.log('getting to users path')
+  res.status(201).json({data: 'success'})
+
+});
+
+users.post('/login', db.loginUser, (req, res) => {
+  console.log(res.rows);
+  var token = jwt.sign(res.rows, SECRET)
+  res.json({agent: res.rows, token: token })
+
+});
+
 /*
 users.post('/admin', db.createUser, function(req, res){
   res.redirect('/');
