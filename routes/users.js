@@ -3,7 +3,6 @@ const users = express.Router();
 const bodyParser = require('body-parser');
 const db = require('../db/pgp');
 const session = require('express-session');
-const pgSession = require('connect-pg-simple');
 
 users.post('/', db.createSubscriber, function(req, res){
   res.redirect('/');
@@ -19,7 +18,7 @@ users.get('/', (req, res) => {
   res.json({data: 'success'});
 });
 
-users.post('/', db.createUser, (req,res) => {
+users.post('/create', db.createUser, (req,res) => {
   console.log('getting to users path')
   res.status(201).json({data: 'success'})
 

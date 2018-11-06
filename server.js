@@ -10,8 +10,9 @@ const db = require('./db/pgp');
 const dotenv = require('dotenv');
 const userRoutes = require(path.join(__dirname, 'routes/users'));
 const session = require('express-session');
-const pgSession = require('connect-pg-simple')(session);
 const pgp = require('pg-promise')({});
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -27,17 +28,6 @@ var cn = {
   password: process.env.DB_PASS
 };
 
-//initialize session and connect-pg-simple for login stuff
-app.use(session({
-  store: new pgSession({
-    pgPromise: pgp(cn),
-    tableName: 'session'
-  }),
-  secret: 'shhhhh',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {maxAge: 30 * 24 * 60 * 60 *100}
-}));
 
 //create static route to public folder
 app.use(express.static(path.join(__dirname, 'public')));
