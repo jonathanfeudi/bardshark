@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 dotenv.load();
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSaltSync(10);
+const session = require('express-session');
 
 if(process.env.ENVIRONMENT === 'production') {
   var cn = process.env.DATABASE_URL

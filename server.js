@@ -10,9 +10,8 @@ const db = require('./db/pgp');
 const dotenv = require('dotenv');
 const userRoutes = require(path.join(__dirname, 'routes/users'));
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const pgp = require('pg-promise')({});
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,14 +19,28 @@ const port = process.env.PORT || 3000;
 //load .env
 dotenv.load();
 
-var cn = {
-  host: process.env.DB_HOST,
-  port: 5432,
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASS
-};
 
+if (process.env.ENVIRONMENT === 'production'){
+  var cn = process.env.DATABASE_URL;
+} else {
+  var cn = {
+    host: process.env.DB_HOST,
+    port: 5432,
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS
+  };
+
+app.use(session({
+  store: new pgSession({
+    pg: pgp,
+    conString: cn,
+    tableName: 'session'
+  }),
+  secret: process.env.SECRET,
+  resave: false,
+  cookie: {maxAge: 30 * 24 * 60 * 60 *100}
+}));
 
 //create static route to public folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -48,7 +61,7 @@ app.get('/', function(req,res){
   res.render('pages/home')
 });
 
-app.use( '/users', userRoutes);
+app.use('/users', userRoutes);
 
 app.listen(port,()=>
   console.log('Server online - Taste the Shark on port',port,'//', new Date())

@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
+    "connect-pg-simple": "^5.0.0",
     "dotenv": "^4.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",

@@ -19,31 +19,32 @@ users.get('/', (req, res) => {
 });
 
 users.post('/create', db.createUser, (req,res) => {
-  console.log('getting to users path')
-  res.status(201).json({data: 'success'})
-
+  res.status(201).json({data: 'success'});
 });
 
+/*
 users.post('/login', db.loginUser, (req, res) => {
   console.log(res.rows);
   var token = jwt.sign(res.rows, SECRET)
-  res.json({agent: res.rows, token: token })
-
-});
-
-/*
-users.post('/admin', db.createUser, function(req, res){
-  res.redirect('/');
+  res.json({agent: res.rows, token: token });
 });
 */
 
-/*
+users.get('/login', function(req, res){
+  res.render('pages/login.html.ejs', {session: req.session});
+});
+
 users.post('/login', db.loginUser, function(req, res){
   req.session.user = res.rows;
   req.session.save(function(){
     res.redirect('/')
   });
 });
-*/
+
+users.delete('/logout', function(req, res){
+  req.session.destroy(function(err){
+    res.redirect('/');
+  })
+});
 
 module.exports = users;
