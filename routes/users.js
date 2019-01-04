@@ -3,6 +3,7 @@ const users = express.Router();
 const bodyParser = require('body-parser');
 const db = require('../db/pgp');
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 
 users.post('/', db.createSubscriber, function(req, res){
   res.redirect('/');
