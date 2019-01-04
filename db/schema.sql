@@ -5,8 +5,9 @@ DROP TABLE if exists session;
 CREATE TABLE users (
        userid SERIAL UNIQUE PRIMARY KEY,
        email VARCHAR(255),
+       password_digest TEXT,
        username TEXT,
-       password_digest TEXT
+       admin BIT
 );
 
 CREATE TABLE mailingList (

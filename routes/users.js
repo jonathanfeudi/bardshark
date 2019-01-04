@@ -23,16 +23,12 @@ users.post('/create', db.createUser, (req,res) => {
   res.status(201).json({data: 'success'});
 });
 
-/*
-users.post('/login', db.loginUser, (req, res) => {
-  console.log(res.rows);
-  var token = jwt.sign(res.rows, SECRET)
-  res.json({agent: res.rows, token: token });
-});
-*/
-
 users.get('/login', function(req, res){
-  res.render('pages/login.html.ejs', {session: req.session});
+  res.render('pages/login', {session: req.session});
+});
+
+users.get('/register', function(req,res){
+  res.render('pages/register', {session: req.session});
 });
 
 users.post('/login', db.loginUser, function(req, res){

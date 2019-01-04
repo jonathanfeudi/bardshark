@@ -22,21 +22,20 @@ if(process.env.ENVIRONMENT === 'production') {
 var db = pgp(cn);
 
 
-function createSecure (email, password, username, callback) {
+function createSecure (email, password, username, admin, callback) {
   bcrypt.genSalt(function (err, salt) {
     bcrypt.hash(password, salt, function (err, hash) {
-      callback(email, hash, username);
+      callback(email, hash, username, admin);
     });
   });
 };
 
 
 function createUser(req, res, next){
-  createSecure(req.body.email, req.body.password, req.body.username, saveUser);
-
-  function saveUser(email, hash, username) {
-    db.none("INSERT INTO users (email, password_digest, username) VALUES ($1, $2, $3);",
-      [email, hash, username])
+  createSecure(req.body.email, req.body.password, req.body.username, req.body.admin, saveUser);
+  function saveUser(email, hash, username, admin) {
+    db.none("INSERT INTO users (email, password_digest, username, admin) VALUES ($1, $2, $3, $4);",
+      [email, hash, username, admin])
       .then((data) => {
         console.log(data)
         next()
